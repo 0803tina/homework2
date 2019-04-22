@@ -3,8 +3,8 @@ title: "homework2"
 date: "2019-04-19"
 output: html_document
 params:
-  studentID: "你的學號"
-  studentName: "你的名字"
+  studentID: "410773043"
+  studentName: "陳柏岑"
 ---
 
 # 注意事項
@@ -86,11 +86,15 @@ studentRecord <-
 
 請將元素名稱「學年平均成績」改成「平均成績」。（此題最後一行請輸入studentRecord，老師改題時會看studentRecord的names有沒有正確更改。）
 ```{r ans11}
+names(studentRecord)[c(4)] <- c("平均成績")
+studentRecord
 ```
 
 ### 1.2
 請將"一年級"，"二年級"，"三年級"，"四年級"改成"一"，"二"，"三"，"四"。（hint: 改掉studentRecord[[4]]的元素名稱。）（此題最後一行請輸入studentRecord，老師改題時會看studentRecord的names有沒有正確更改。）
 ```{r ans12}
+studentRecord[[4]][c(1,2,3,4)] <- c("一","二","三","四")
+studentRecord
 ```
 
 
@@ -114,12 +118,22 @@ commitCheck <- fromJSON(commitCheck, simplifyVector = F)
 ### 2.1
 請取出commitCheck第8個元素底下的**commit**元素，再拿出它底下的**committer**元素，再拿出它底下的**date**元素的第一個值，存成commit8Date答案物件（為character class) 。（最後一行最忘了打答案物件）
 ```{r ans21}
+commit8Date <- commitCheck[[8]][["commit"]][["committer"]][["date"]]
+class(commit8Date)
+commit8Date
 ```
 
 
 ### 2.2
 commit8Date的日期時間為UTC時間，請將它轉成台灣時間的date time class並存在答案物件commit8TWDate。（最後一行最忘了打答案物件）
 ```{r ans22}
+library(stringr)
+commit8Date <- str_replace(commit8Date,"T"," ")
+commit8Date <- str_replace(commit8Date,"Z"," ")
+library(lubridate)
+commit8Date <- ymd_hms(commit8Date)
+commit8TWDate <- with_tz(commit8Date, tz="Asia/Taipei")
+commit8TWDate
 ```
 
 ### 2.3
