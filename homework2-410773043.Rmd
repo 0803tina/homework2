@@ -151,9 +151,9 @@ map(commitCheck,~.[[3]][[2]][[3]][[1]]) -> allCommitDatesList
 
 allCommitDatesList是個list，請使用`unlist()`函數將它轉成一個atomic vector其class為character，並存在allCommitDates答案物件。（最後一行最忘了打答案物件）
 ```{r ans24}
-allCommitDatesList <- as.character(unlist(allCommitDatesList))   
+allCommitDates <- as.character(unlist(allCommitDatesList))   
 class(allCommitDatesList)
-allCommitDatesList
+allCommitDates
 ```
 
 ### 2.5 
@@ -161,8 +161,8 @@ allCommitDates是UTC時區的時間文字字串，請將它轉成date time格式
 ```{r ans25}
 library(lubridate)
 allCommitDatesList <- ymd_hms(allCommitDatesList)
-datetime <- with_tz(allCommitDatesList, tz="Asia/Taipei")
-datetime
+allCommitDatesTW <- with_tz(allCommitDatesList, tz="Asia/Taipei")
+allCommitDatesTW
 ```
 
 ### 2.6
