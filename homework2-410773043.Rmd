@@ -87,6 +87,7 @@ studentRecord <-
 請將元素名稱「學年平均成績」改成「平均成績」。（此題最後一行請輸入studentRecord，老師改題時會看studentRecord的names有沒有正確更改。）
 ```{r ans11}
 names(studentRecord)[c(4)] <- c("平均成績")
+names(studentRecord)
 studentRecord
 ```
 
